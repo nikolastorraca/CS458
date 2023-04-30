@@ -64,6 +64,11 @@ body{
     font-weight: 500;
     line-height: 25px;
 }
+.winner-text{
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+}
 .coin{
     left: 200px;
     height: 100px;
@@ -75,7 +80,6 @@ body{
 .coin img{
     width: 145px;
 }
-
 .heads,.tails{
     position: absolute;
     width: 100%;

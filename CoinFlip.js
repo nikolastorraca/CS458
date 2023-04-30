@@ -3,6 +3,7 @@ let tails = 0;
 let coin = document.querySelector(".coin");
 let flipBtn = document.querySelector("#flip-button");
 let resetBtn = document.querySelector("#reset-button");
+let winnerText = document.querySelector("#winner");
 
 flipBtn.addEventListener("click", () => {
     let even = 0;
@@ -10,17 +11,20 @@ flipBtn.addEventListener("click", () => {
     console.log(randInt)
     let i = randInt
     coin.style.animation = "none";
+    document.querySelector(".winner-text").textContent = "";
     if(i%2 == even){
         setTimeout(function(){
             coin.style.animation = "spin-heads 3s forwards";
         }, 100);
         heads++;
+        winnerText = "Winner: Heads!"
     }
     else{
         setTimeout(function(){
             coin.style.animation = "spin-tails 3s forwards";
         }, 100);
         tails++;
+        winnerText = "Winner: Tails!"
     }
     setTimeout(updateStats, 3000);
     disableButton();
@@ -28,6 +32,7 @@ flipBtn.addEventListener("click", () => {
 function updateStats(){
     document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
     document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
+    document.querySelector(".winner-text").textContent = winnerText;
 }
 // add a condiditon that if rest button is clicked to enable flip b
 function disableButton(){
@@ -40,5 +45,6 @@ resetBtn.addEventListener("click",() => {
     coin.style.animation = "none";
     heads = 0;
     tails = 0;
+    winnerText = "";
     updateStats();
 });
