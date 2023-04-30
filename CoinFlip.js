@@ -29,12 +29,12 @@ function updateStats(){
     document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
     document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
 }
-// add a condiditon that if rest button is clicked to enable flip button!
+// add a condiditon that if rest button is clicked to enable flip b
 function disableButton(){
     flipBtn.disabled = true;
     setTimeout(function(){
-        flipBtn.disabled = true;
-    });
+        flipBtn.disabled = false;
+    },3000);
 }
 resetBtn.addEventListener("click",() => {
     coin.style.animation = "none";
