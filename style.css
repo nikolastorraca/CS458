@@ -65,6 +65,7 @@ body{
     line-height: 25px;
 }
 .coin{
+    left: 200px;
     height: 100px;
     width: 150px;
     margin: 50px auto;
@@ -72,10 +73,6 @@ body{
             transform-style: preserve-3d;
 }
 .coin img{
-    width: 145px;
-}
-
-.coin2 img{
     width: 145px;
 }
 
