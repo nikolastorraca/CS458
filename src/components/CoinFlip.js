@@ -4,11 +4,12 @@ let coin = document.querySelector(".coin");
 let flipBtn = document.querySelector("#flip-button");
 let resetBtn = document.querySelector("#reset-button");
 let winnerText = document.querySelector("#winner");
+let flipClick = 0;
 
 flipBtn.addEventListener("click", () => {
     let even = 0;
     let randInt = Math.round(Math.random()*100);
-    console.log(randInt)
+    // console.log(randInt)
     let i = randInt
     coin.style.animation = "none";
     document.querySelector(".winner-text").textContent = "";
@@ -17,34 +18,101 @@ flipBtn.addEventListener("click", () => {
             coin.style.animation = "spin-heads 3s forwards";
         }, 100);
         heads++;
-        winnerText = "Winner: Heads!"
+        // winnerText = "Winner: Heads!"
     }
     else{
         setTimeout(function(){
             coin.style.animation = "spin-tails 3s forwards";
         }, 100);
         tails++;
-        winnerText = "Winner: Tails!"
+        // winnerText = "Winner: Tails!"
     }
     setTimeout(updateStats, 3000);
-    disableButton();
+    // disableButton();
+    // coinSpin();
+    flipClick++;
+    // console.log(flipClick);
+    if (flipClick == 3){
+        disableButton();
+        setTimeout(8000);
+    }
+
+    async function delayedGreeting(){
+        await sleep(10800);
+        if(flipBtn.disabled){
+            delayedGreeting();
+            setTimeout(8000);
+            if(heads > tails){
+                winnerText = "Winner: Heads!"
+            document.querySelector(".winner-text").textContent = winnerText;
+        }
+        else{
+                winnerText = "Winner: Tails!"
+            document.querySelector(".winner-text").textContent = winnerText; 
+        }
+     }
+      }
+      
+      delayedGreeting();
+
+
+    //     if(flipBtn.disabled){
+    //         delayedGreeting();
+    //         console.log("waiting");
+    //         setTimeout(() => {  console.log("World!"); }, 5000000);
+    //         if(heads > tails){
+    //             winnerText = "Winner: Heads!"
+    //         document.querySelector(".winner-text").textContent = winnerText;
+    //     }
+    //     else{
+    //             winnerText = "Winner: Tails!"
+    //         document.querySelector(".winner-text").textContent = winnerText; 
+    //     }
+    //  }
+    
+    
 });
+
+
+
+
+
 function updateStats(){
     document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
     document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
-    document.querySelector(".winner-text").textContent = winnerText;
+    // if(flipBtn.disabled){
+    //     if(heads > tails){
+    //         winnerText = "Winner: Heads!"
+    //         document.querySelector(".winner-text").textContent = winnerText;
+    //     }
+    //     else{
+    //         winnerText = "Winner: Tails!"
+    //         document.querySelector(".winner-text").textContent = winnerText; 
+    //     }
+    // }
+    // document.querySelector(".winner-text").textContent = winnerText;
 }
-// add a condiditon that if rest button is clicked to enable flip b
+
 function disableButton(){
     flipBtn.disabled = true;
-    setTimeout(function(){
-        flipBtn.disabled = false;
-    },3000);
+    return;
 }
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve,ms));
+}
+// function coinSpin(){
+//     flipBtn.disabled = true;
+//     setTimeout(function(){
+//         flipBtn.disabled = false;
+//     },3000);
+// }
 resetBtn.addEventListener("click",() => {
     coin.style.animation = "none";
     heads = 0;
     tails = 0;
-    winnerText = "";
+    flipClick = 0;
+    flipBtn.disabled = false;
+    winnerText = 0;
     updateStats();
 });
