@@ -22,7 +22,6 @@ contract CoinFlip {
         require(player2 == address(0));
 
         betAmount = 0;
-        // msg.sender.transfer(address(this).balance);
     }
 
     function takeBet(bool choice) public payable {
