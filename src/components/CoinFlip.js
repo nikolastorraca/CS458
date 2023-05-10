@@ -4,12 +4,15 @@ let coin = document.querySelector(".coin");
 let flipBtn = document.querySelector("#flip-button");
 let resetBtn = document.querySelector("#reset-button");
 let winnerText = document.querySelector("#winner");
+let betButton = document.querySelector("#bet-button");
+let textBox = document.getElementById("Bet").value;
 let flipClick = 0;
+let headsSelected = document.getElementById("checkboxHeads").checked;
+let tailsSelected= document.getElementById("checkboxTails").checked;
 
 flipBtn.addEventListener("click", () => {
     let even = 0;
     let randInt = Math.round(Math.random()*100);
-    // console.log(randInt)
     let i = randInt
     coin.style.animation = "none";
     document.querySelector(".winner-text").textContent = "";
@@ -18,20 +21,16 @@ flipBtn.addEventListener("click", () => {
             coin.style.animation = "spin-heads 3s forwards";
         }, 100);
         heads++;
-        // winnerText = "Winner: Heads!"
     }
     else{
         setTimeout(function(){
             coin.style.animation = "spin-tails 3s forwards";
         }, 100);
         tails++;
-        // winnerText = "Winner: Tails!"
     }
     setTimeout(updateStats, 3000);
-    // disableButton();
-    // coinSpin();
     flipClick++;
-    // console.log(flipClick);
+
     if (flipClick == 3){
         disableButton();
         setTimeout(8000);
@@ -42,71 +41,54 @@ flipBtn.addEventListener("click", () => {
         if(flipBtn.disabled){
             delayedGreeting();
             setTimeout(8000);
-            if(heads > tails){
-                winnerText = "Winner: Heads!"
-            document.querySelector(".winner-text").textContent = winnerText;
+            if(heads > tails && (headsSelected = true)){
+                winnerText = "Winner: Heads! You Win!"
+                document.querySelector(".winner-text").textContent = winnerText;
+            }
+            else if(heads > tails && !(headsSelected = true)){
+                winnerText = "Winner: Heads! You Lose!"
+                document.querySelector(".winner-text").textContent = winnerText; 
+            }
+            else if((heads < tails) && (document.getElementById("checkboxTails").checked = true)){
+                winnerText = "Winner: Tails! You Win!"
+                document.querySelector(".winner-text").textContent = winnerText;
+            }
+            else{
+                winnerText = "Winner: Tails! You Lose!"
+                document.querySelector(".winner-text").textContent = winnerText;
+            }
         }
-        else{
-                winnerText = "Winner: Tails!"
-            document.querySelector(".winner-text").textContent = winnerText; 
-        }
-     }
-      }
+    }
       
-      delayedGreeting();
-
-
-    //     if(flipBtn.disabled){
-    //         delayedGreeting();
-    //         console.log("waiting");
-    //         setTimeout(() => {  console.log("World!"); }, 5000000);
-    //         if(heads > tails){
-    //             winnerText = "Winner: Heads!"
-    //         document.querySelector(".winner-text").textContent = winnerText;
-    //     }
-    //     else{
-    //             winnerText = "Winner: Tails!"
-    //         document.querySelector(".winner-text").textContent = winnerText; 
-    //     }
-    //  }
-    
-    
+    delayedGreeting();
 });
-
-
-
 
 
 function updateStats(){
     document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
     document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
-    // if(flipBtn.disabled){
-    //     if(heads > tails){
-    //         winnerText = "Winner: Heads!"
-    //         document.querySelector(".winner-text").textContent = winnerText;
-    //     }
-    //     else{
-    //         winnerText = "Winner: Tails!"
-    //         document.querySelector(".winner-text").textContent = winnerText; 
-    //     }
-    // }
-    // document.querySelector(".winner-text").textContent = winnerText;
 }
 
 function disableButton(){
     flipBtn.disabled = true;
     return;
 }
-
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms));
 }
-// function coinSpin(){
-//     flipBtn.disabled = true;
-//     setTimeout(function(){
-//         flipBtn.disabled = false;
-//     },3000);
-// }
+
+function formdata(){
+betButton.addEventListener("click",() =>{
+    // Had trouble integrating Contract with our UI, just hard coded contract address into it
+    alert("Your bet amount has been recoreded and sent to contract 0xe3c2ce283c7da77708f63e91ce2b3ce8d27d9682."); 
+    if(textBox == "hello"){
+    console.log("something in box");
+    console.log(textBox);
+    }
+
+
+});
+}
 resetBtn.addEventListener("click",() => {
     coin.style.animation = "none";
     heads = 0;
@@ -114,5 +96,7 @@ resetBtn.addEventListener("click",() => {
     flipClick = 0;
     flipBtn.disabled = false;
     winnerText = 0;
+    document.getElementById("checkboxHeads").checked = false;
+    document.getElementById("checkboxTails").checked = false;
     updateStats();
 });
