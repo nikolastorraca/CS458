@@ -47,16 +47,30 @@ body{
 
 .container{
     background-color: #C8C372;
-    width: 400px;
+    width: 500px;
     padding: 25px;
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 60%;
+    top: 50%;
     left: 50%;
-    box-shadow: 15px 30px 35px rgba(0,0,0,0.1);
     border-radius: 10px;
-    -webkit-perspective: 300px;
-    perspective: 300px;
+}
+
+.containerBox{
+    background-color: #C8C372;
+    width: 200px;
+    height: 130px;
+    position: absolute;
+    padding: 25px;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,20%);
+    border-radius: 10px;
+}
+
+#bet-button{
+    background-color: #1e4d2b;
+    color: white;
 }
 .stats{
     text-align: right;
@@ -105,13 +119,15 @@ body{
     100%{
         transform: rotateX(2160deg);
     }
-}
+} 
 .buttons{
     display: flex;
     justify-content: space-between;
+
+    
 }
 button{
-    width: 120px;
+    width: 150px;
     padding: 10px 0;
     border: 2.5px solid #424ae0;
     border-radius: 5px;
