@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="CS458 DApp Final Project" content="Jonathan Guzman, Jaime Munoz, Nik Torraca, Ojaswi Sinha ">
     <title>Flip Your Life</title>
-    <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
-    <!--Stylesheet-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="coinStyle.css">
 </head>
 <body>
     <div class = "rules">
@@ -27,18 +24,21 @@
             <div class="heads">
                 <img src="RamsHeads.svg">
             </div>
-            <div class="tails">
-                <img src="RamsTails.svg">
+            <div class="tails"><img src="RamsTails.svg">
             </div>
         </div>
         <div class="buttons">
-            <button id="flip-button">
-                Flip Coin
-            </button>
-            <button id="reset-button">
-                Reset
-            </button>
+            <button id="flip-button">Flip Coin</button>
+            <button id="reset-button">Reset</button>
         </div>
+    </div>
+    <div class="containerBox">
+        <input type="number" id="Bet" name="Bet" onclick="formdata()" placeholder="Place a number >= 1">
+        <input type="checkbox" id="checkboxHeads" name="checkboxHeads">
+        <label for="checkboxHeads">Heads</label><br>
+        <input type="checkbox" id="checkboxTails" name="checkboxTails">
+        <label for="checkboxTails">Tails</label><br>
+        <button id="bet-button">Bet</button>
     </div>
     <!--Script-->
     <script src="CoinFlip.js"></script>
